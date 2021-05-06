@@ -12,7 +12,7 @@ export const CompanyDetails =()=> {
                <a href="https://goo.gl/maps/36etXfHjYR52" target="_blank" rel="noreferrer">
                             <p>Jacob van Lennepkade 334-H</p>
                             <p>1053 NJ Amsterdam</p>
-                            <p>The Netherlands <span class="emoji">🇳🇱</span></p>
+                            <p>The Netherlands <span className="emoji">🇳🇱</span></p>
                         </a>
             </div>
             <div className="map">

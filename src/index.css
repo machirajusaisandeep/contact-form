@@ -11,3 +11,15 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+ol, ul {
+  list-style: none;
+  padding: 0;
+}
+a{
+  text-decoration: none;
+  font-family: Slate W01 Medium,Helvetica,Arial,sans-serif!important;
+  font-size: inherit;
+  line-height: inherit;
+  cursor: pointer;
+  transition: all .25s ease-in-out;
+}
