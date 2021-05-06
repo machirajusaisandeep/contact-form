@@ -4,7 +4,7 @@ export const CompanyDetails =()=> {
     return (
         <div>
             <div className="top">
-            <h2>We’re here</h2>
+            <h2 className="title">We’re here</h2>
             <p>Our door is always open for a good cup of coffee.</p>
             </div>
             <div className="info">
@@ -14,6 +14,9 @@ export const CompanyDetails =()=> {
                             <p>1053 NJ Amsterdam</p>
                             <p>The Netherlands <span class="emoji">🇳🇱</span></p>
                         </a>
+            </div>
+            <div className="map">
+
             </div>
         </div>
     )

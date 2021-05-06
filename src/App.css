@@ -4,6 +4,30 @@
 }
 .container{
   height: 100vh;
-  border: 1px solid;
   width: 50%;
+  padding: 104px 100px;
+}
+.steps{
+  background-color: #58C7FF;
+}
+.light{
+color:#fff;
+}
+.map{
+    background-image: url("./assets/img/map@2x.jpg");
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    height: 620px;
+    width: 70%;
+    position: absolute;
+    bottom: 0;
+    z-index: -1;
+    background-size: cover;
+    height: 750px;
+}
+.title{
+  font-family: Slate W01 Bold,Helvetica,Arial,sans-serif!important;
+  font-size: 76px;
+  line-height: 80px;
+  margin-bottom: 16px;
 }
