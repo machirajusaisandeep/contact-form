@@ -6,9 +6,11 @@ import {TweenMax,Power3}  from "gsap";
 
 function App() {
   const [loadView,setLoadView]=useState(false);
-  const [changeView,setChangeView]=useState(false);
-  const [back,setBack]=useState(false);
+  const [currentStep,
+    setCurrentStep] = useState(1); 
   let loaderRef=useRef(null);
+  let detailRef=useRef(null);
+  let formRef=useRef(null);
   useEffect(()=>{
     TweenMax.to(loaderRef,.8,{opacity:1,y:-20,ease:Power3.easeOut,delay:0.2})
     setTimeout(()=>{
@@ -16,13 +18,26 @@ function App() {
     },1000)
   },[])
 
+  useEffect(()=>{
+   if(loadView){
+    if(currentStep === 2){
+      TweenMax.fromTo(detailRef,.8,{width:"50%"},{width:"0%",ease:Power3.easeInOut})
+      TweenMax.fromTo(formRef,.8,{width:"50%"},{width:"100%",ease:Power3.easeInOut})
+    }
+   }
+  },[loadView,currentStep])
+
+  const onBack=(e)=>{
+      TweenMax.to([detailRef,formRef],1,{width:"50%",ease:Power3.easeIn});
+      setCurrentStep(e)
+  }
   const MainBody=()=>{
     return (<React.Fragment>
-      <div className={"information container "+(changeView?"shrink":'')}>
-     <CompanyDetails onBackClick={(e)=>setBack(e)} show={!changeView}></CompanyDetails>
+      <div className="information container" ref={el=>(detailRef=el)}>
+     <CompanyDetails showBack={currentStep===2} onBackClick={(e)=>onBack(e)}></CompanyDetails>
      </div>
-     <div  className={"steps container "+(changeView?"grow":'')}>
-          <ContactForm onStepChange={(e)=>setChangeView(e)} back={back} onNext={(e)=>setBack(e)}></ContactForm>
+     <div  className="steps container" ref={el=>(formRef=el)}>
+          <ContactForm step={currentStep} onStepChange={(e)=>setCurrentStep(e)}></ContactForm>
      </div></React.Fragment>)
   }
   const Loader=()=>{

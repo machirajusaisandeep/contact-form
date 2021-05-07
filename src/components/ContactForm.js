@@ -1,4 +1,4 @@
-import React, {useState,useEffect} from 'react';
+import React, {useState} from 'react';
 import {Formik, Form, Field, ErrorMessage} from 'formik';
 import * as Yup from 'yup';
 import { ToastContainer, toast } from 'react-toastify';
@@ -37,19 +37,9 @@ const validationSchema = Yup.object({
 const step1Options = ["Your great project", "Meeting for a coffee", "Birds and bees", "Plan a video call"];
 const step2Titles = ["Let's craft your product.", "We like coffee too! ☕️", "What's on your mind?", "Let's plan a video call! 🎥"];
 
-export const ContactForm = (props) => {
+export const ContactForm = ({step,onStepChange}) => {
     const [optionIndex,
         setoptionIndex] = useState(3);
-    const [currentStep,
-        setcurrentStep] = useState(1);  
-
-        
-   useEffect(()=>{
-    if(props.back){
-        setcurrentStep(1)
-    }
-   },[props.back])
-
     const Step1 = () => {
         return (
             <div className="step-1">
@@ -82,7 +72,7 @@ export const ContactForm = (props) => {
                         })
 }
                     </ul>
-                    <button className="next-btn" onClick={() => {setcurrentStep(2);props.onNext(false)}}>Next</button>
+                    <button className="next-btn" onClick={()=>onStepChange(2)}>Next</button>
                 </div>
             </div>
         )
@@ -91,7 +81,6 @@ export const ContactForm = (props) => {
         return (
             <div className="step-2">
                 <h2 className="title">{step2Titles[optionIndex]}</h2>
-                <button onClick={() => setcurrentStep(1)}>Back</button>
                 <div className="contact-bg"> 
                 <h4>Personal Details</h4>
                 <Formik
@@ -140,7 +129,7 @@ export const ContactForm = (props) => {
     }
     return (
         <div className="light">
-            {currentStep === 1
+            {step === 1
                 ? <Step1/>
                 : <Step2/>
             }

@@ -1,13 +1,7 @@
-import React, {useState,useEffect} from 'react';
+import React from 'react';
 import medium from '../assets/social/medium.svg';
 import backIcon from '../assets/icons/back.svg';
-export const CompanyDetails = (props) => {
-    const [showDetails,setShowDetails]=useState(true);
-    useEffect(()=>{
-        setShowDetails(props.show)
-       },[props.show]);
-    
-
+export const CompanyDetails = ({showBack,onBackClick}) => {
     const Details=()=>{
         return (  <div>
             <div className="top">
@@ -34,7 +28,7 @@ export const CompanyDetails = (props) => {
     return (
         <div>
            {
-               !showDetails? <button className="back-btn" onClick={()=>{props.onBackClick(true);setShowDetails(false)}}>
+               showBack? <button className="back-btn" onClick={()=>onBackClick(1)}>
                <img src={backIcon} alt="back button"/>
            </button>:
          <Details></Details>
