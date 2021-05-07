@@ -6,12 +6,13 @@
   height: 100vh;
   width: 50%;
   padding: 104px 100px;
+  position: relative;
 }
 .steps{
   background-color: #58C7FF;
 }
 .light{
-color:#fff;
+color:#fff !important;
 }
 .loader{
   opacity:0;
@@ -27,13 +28,13 @@ color:#fff;
     background-image: url("./assets/img/map@2x.jpg");
     background-repeat: no-repeat;
     background-position: center bottom;
-    height: 620px;
-    width: 70%;
+    width: 100%;
     position: absolute;
-    bottom: 0;
+    bottom: 15%;
     z-index: -1;
     background-size: cover;
-    height: 750px;
+    height: 658px;
+    left: 0;
 }
 .title{
   font-family: Slate W01 Bold,Helvetica,Arial,sans-serif!important;
@@ -56,7 +57,20 @@ color:#fff;
     cursor: pointer;
     transition: all .25s ease-in-out;
 }
-
+.next-btn:hover{
+  color: #2eaff0;
+    background-color: #fff;
+    border-color: #fff;
+}
+.back-btn{
+    border: none;
+    color: transparent;
+    outline: none;
+    background: none;
+    position: absolute;
+    left: 40%;
+    top: 5%;
+}
 .link {
   outline: none;
   text-decoration: none;
@@ -65,23 +79,6 @@ color:#fff;
   display: inline-block
 }
 
-.link-animation {
-  padding: 0 2px;
-  line-height: 1.6;
-}
-.link-animation:after {
-  content: '';
-  position: absolute;
-  height: 2px;
-  width: 100%;
-  bottom: 0;
-  right: 0;
-  transform: translate3d(0,0,0);
-  transition: all .4s;
-  transition-timing-function: cubic-bezier(.7,0,.3,1);
-  border-radius: 2px;
-  z-index: -1
-}
 
 input[type=checkbox] {
   -webkit-appearance: checkbox;
@@ -102,7 +99,6 @@ input[type=email], input[type=text], input[type=url], textarea {
   border: 2px solid transparent;
   font: inherit;
   line-height: 1.6;
-  color: #5c5f6e;
   border-radius: 2px;
   transition: all .25s ease-in-out;
   background-image: url("./assets/input/placeholder@2x.png");
@@ -184,6 +180,15 @@ input[type=email]:focus, input[type=text]:focus, textarea:focus {
   background-color: #26a9ea;
   border: none;
 }
+input[type=email].error, input[type=text].error, input[type=url].error, textarea.error {
+  transition: all .25s ease-in-out;
+  background: url("./assets//input/sad@2x.png");
+  background-size: 20px 20px;
+  background-position: calc(100% - 20px) 22px;
+  background-repeat: no-repeat;
+  background-color: rgba(225,57,93,.6);
+}
+
 .radio-list li{
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -191,12 +196,7 @@ input[type=email]:focus, input[type=text]:focus, textarea:focus {
   cursor: pointer;
   overflow: hidden;
 }
-.grow {
-  width: 100%;
-}
-.shrink {
-  width: 0%;
-}
+
 .left-half{
   max-width: calc(50% - 24px);
   width: 100%;
@@ -204,6 +204,7 @@ input[type=email]:focus, input[type=text]:focus, textarea:focus {
 }
 .right-half{
   flex-grow: 1;
+  margin-left: 24px;
 }
 .step-2 form{
   display: flex;
@@ -215,9 +216,105 @@ input[type=email]:focus, input[type=text]:focus, textarea:focus {
 .mr-b-24{
   margin-bottom: 24px;
 }
+.mr-b-24{
+  margin-bottom: 24px;
+}
 .pd-b-100{
   padding-bottom: 100px;
 }
 .form-control textarea{
   height: 328px;
 }
+.form-submit{
+  text-align: end;
+}
+.social-icons{
+  display: flex;
+  margin-top: 16px;
+}
+.social-icons svg{
+    margin-right: 20px;
+}
+.top{
+  margin-bottom: 72px;
+}
+.top p{
+  color: #686b77;
+}
+.light p{
+  color: #fff;
+}
+.light h4{
+  color: #fff;
+}
+a.white, .link.white {
+  color: #fff;
+}
+a:hover, .link:hover {
+  transition: all .25s ease-in-out;
+}
+a, .link {
+  text-decoration: none;
+  font-family: Slate W01 Medium,Helvetica,Arial,sans-serif!important;
+  font-size: inherit;
+  line-height: inherit;
+  cursor: pointer;
+  transition: all .25s ease-in-out;
+}
+
+.link-animation {
+  padding: 0 2px;
+  line-height: 1.6;
+}
+.link-animation span {
+  display: block;
+  position: relative;
+  z-index: 2;
+}
+.link-animation:after {
+  content: '';
+  position: absolute;
+  height: 2px;
+  width: 100%;
+  bottom: 0;
+  right: 0;
+  transform: translate3d(0,0,0);
+  transition: all .4s;
+  transition-timing-function: cubic-bezier(.7,0,.3,1);
+  border-radius: 2px;
+}
+.link-animation svg {
+  margin-left: 8px;
+}
+.link-animation.white:hover {
+  color: #fff;
+}
+.link-animation.white:after {
+  background: rgba(255,255,255,.5);
+}
+.link-animation.white:hover:after {
+  height: 100%;
+  background: rgba(255,255,255,.25);
+  border-radius: 4px;
+}
+a svg #twitter,a svg #instagram,a svg #medium {
+  transition: 200ms;
+  transition-timing-function: ease-in-out;
+  -webkit-transition: 200ms;
+  -webkit-transition-timing-function: ease-in-out
+}
+
+a svg:hover #twitter {
+  fill: #1da1f2;
+  width: 44px;
+  height: 38px
+}
+a svg:hover #instagram {
+  fill: #5851db;
+  width: 40px;
+  height: 40px
+}
+a svg:hover #medium {
+  fill: #02b875
+}
+
