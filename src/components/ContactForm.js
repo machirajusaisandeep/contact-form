@@ -143,10 +143,15 @@ export const ContactForm = ({step, onStepChange}) => {
                                                 : ''}
                                                 placeholder="What do you want to talk about?"
                                                 name='about'/>
+                                                <ErrorMessage name='about'>
+                                                {error => <div className='error'>{error}</div>}
+                                            </ErrorMessage>
                                         </div>
+                                        <div className='form-submit'>
                                         <button type='submit' className="next-btn" disabled={!isValid || isSubmitting}>
                                             Send Inquiry
                                         </button>
+                                        </div>
                                     </div>
 
                                 </Form>
