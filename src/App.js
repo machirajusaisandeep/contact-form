@@ -43,9 +43,9 @@ function App() {
   const Loader=()=>{
     return (
       <div className="loader" ref={el=>(loaderRef=el)}>
-        <h1>Every Pixel Matters</h1>
+        <h1 className="title">Every Pixel <br /> Matters</h1>
         <p>
-        We’re a design studio from Amsterdam. We help startups and other businesses to refine, design and launch their digital products. 
+        We’re a design studio from Amsterdam. We help <br /> startups and other businesses to refine, design and <br /> launch their digital products. 
         </p>
       </div>
     )

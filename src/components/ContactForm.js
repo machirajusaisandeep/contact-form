@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Formik, Form, Field, ErrorMessage} from 'formik';
 import * as Yup from 'yup';
-import { ToastContainer, toast } from 'react-toastify';
+import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 const initialValues = {
     name: '',
@@ -18,8 +18,8 @@ const onSubmit = (values, submitProps) => {
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
-        progress: undefined,
-        });
+        progress: undefined
+    });
 }
 
 const validationSchema = Yup.object({
@@ -37,7 +37,7 @@ const validationSchema = Yup.object({
 const step1Options = ["Your great project", "Meeting for a coffee", "Birds and bees", "Plan a video call"];
 const step2Titles = ["Let's craft your product.", "We like coffee too! ☕️", "What's on your mind?", "Let's plan a video call! 🎥"];
 
-export const ContactForm = ({step,onStepChange}) => {
+export const ContactForm = ({step, onStepChange}) => {
     const [optionIndex,
         setoptionIndex] = useState(3);
     const Step1 = () => {
@@ -47,10 +47,22 @@ export const ContactForm = ({step,onStepChange}) => {
                     <h2 className="title">Let’s talk.</h2>
                     <p>Share your excitement with us.</p>
                     <a
-                        className="link link-animation light"
+                        className="link link-animation white"
                         id="contact"
                         href="mailto:info@yummygum.com">
-                        <span>info@yummygum.com</span>
+                        <span>info@yummygum.com<svg
+                            xmlns="https://www.w3.org/2000/svg"
+                            width="14"
+                            height="12"
+                            viewBox="0 0 14 12">
+                                <path
+                                    className="arrow-vector"
+                                    fill="#fff"
+                                    fill-rule="evenodd"
+                                    d="M120.828427,16.6568542 L111,16.6568542 L111,18.6568542 L120.828427,18.6568542 L117.585786,21.8994949 L119,23.3137085 L124.656854,17.6568542 L123.949747,16.9497475 L119,12 L117.585786,13.4142136 L120.828427,16.6568542 Z"
+                                    transform="translate(-111 -12)"></path>
+                            </svg>
+                        </span>
                     </a>
                 </div>
                 <div >
@@ -72,7 +84,7 @@ export const ContactForm = ({step,onStepChange}) => {
                         })
 }
                     </ul>
-                    <button className="next-btn" onClick={()=>onStepChange(2)}>Next</button>
+                    <button className="next-btn" onClick={() => onStepChange(2)}>Next</button>
                 </div>
             </div>
         )
@@ -81,48 +93,66 @@ export const ContactForm = ({step,onStepChange}) => {
         return (
             <div className="step-2">
                 <h2 className="title">{step2Titles[optionIndex]}</h2>
-                <div className="contact-bg"> 
-                <h4>Personal Details</h4>
-                <Formik
-                    initialValues={initialValues}
-                    validationSchema={validationSchema}
-                    onSubmit={onSubmit}
-                    enableReinitialize>
-                    {({errors, touched,isValid,isSubmitting}) => {
-                        return (
-                            <Form>
-                                <div className="left-half">
-                                    <div className='form-control mr-b-24'>
-                                        <Field type='text' id='name' name='name' placeholder="Name"
-                                        className={errors.name && touched.name ?"error":''}
-                                        />
-                                        <ErrorMessage name='name'>
-                                            {error => <div className='error'>{error}</div>}
-                                        </ErrorMessage>
+                <div>
+                
+                    <h4>Personal Details</h4>
+                    <Formik
+                        initialValues={initialValues}
+                        validationSchema={validationSchema}
+                        onSubmit={onSubmit}
+                        enableReinitialize>
+                        {({errors, touched, isValid, isSubmitting}) => {
+                            return (
+                                <Form>
+                                    <div className="left-half">
+                                        <div className='form-control mr-b-24'>
+                                            <Field
+                                                type='text'
+                                                id='name'
+                                                name='name'
+                                                placeholder="Name"
+                                                className={errors.name && touched.name
+                                                ? "error"
+                                                : ''}/>
+                                            <ErrorMessage name='name'>
+                                                {error => <div className='error'>{error}</div>}
+                                            </ErrorMessage>
+                                        </div>
+
+                                        <div className='form-control mr-b-24'>
+                                            <Field
+                                                type='email'
+                                                id='email'
+                                                name='email'
+                                                placeholder="Email"
+                                                className={errors.email && touched.email
+                                                ? "error"
+                                                : ''}/>
+                                            <ErrorMessage name='email'>
+                                                {error => <div className='error'>{error}</div>}
+                                            </ErrorMessage>
+                                        </div>
+                                    </div>
+                                    <div className="right-half">
+                                        <div className='form-control mr-b-24'>
+                                            <Field
+                                                as='textarea'
+                                                id='about'
+                                                className={errors.about && touched.about
+                                                ? "error"
+                                                : ''}
+                                                placeholder="What do you want to talk about?"
+                                                name='about'/>
+                                        </div>
+                                        <button type='submit' className="next-btn" disabled={!isValid || isSubmitting}>
+                                            Send Inquiry
+                                        </button>
                                     </div>
 
-                                    <div className='form-control mr-b-24'>
-                                        <Field type='email' id='email' name='email' placeholder="Email"
-                                         className={errors.email && touched.email ?"error":''}/>
-                                        <ErrorMessage name='email'>
-                                            {error => <div className='error'>{error}</div>}
-                                        </ErrorMessage>
-                                    </div>
-                                </div>
-                                <div className="right-half">
-                                    <div className='form-control mr-b-24'>
-                                        <Field as='textarea' id='about'  className={errors.about && touched.about ?"error":''} placeholder="What do you want to talk about?" name='about'/>
-                                    </div>
-                                    <button type='submit' className="next-btn"  disabled={!isValid || isSubmitting}>
-                                    Send Inquiry
-                                </button>
-                                </div>
-
-                                
-                            </Form>
-                        )
-                    }}
-                </Formik>
+                                </Form>
+                            )
+                        }}
+                    </Formik>
                 </div>
             </div>
         )
@@ -132,20 +162,18 @@ export const ContactForm = ({step,onStepChange}) => {
             {step === 1
                 ? <Step1/>
                 : <Step2/>
-            }
+}
             <ToastContainer
-position="top-right"
-autoClose={5000}
-hideProgressBar={false}
-newestOnTop={false}
-closeOnClick
-rtl={false}
-pauseOnFocusLoss
-draggable
-pauseOnHover
-/>
-{/* Same as */}
-<ToastContainer />
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover/> {/* Same as */}
+            <ToastContainer/>
         </div>
     )
 }

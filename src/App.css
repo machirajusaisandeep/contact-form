@@ -6,6 +6,7 @@
   height: 100vh;
   width: 50%;
   padding: 104px 100px;
+  position: relative;
 }
 .steps{
   background-color: #58C7FF;
@@ -27,13 +28,13 @@ color:#fff !important;
     background-image: url("./assets/img/map@2x.jpg");
     background-repeat: no-repeat;
     background-position: center bottom;
-    height: 620px;
-    width: 70%;
+    width: 100%;
     position: absolute;
-    bottom: 0;
+    bottom: 15%;
     z-index: -1;
     background-size: cover;
-    height: 750px;
+    height: 658px;
+    left: 0;
 }
 .title{
   font-family: Slate W01 Bold,Helvetica,Arial,sans-serif!important;
@@ -56,7 +57,20 @@ color:#fff !important;
     cursor: pointer;
     transition: all .25s ease-in-out;
 }
-
+.next-btn:hover{
+  color: #2eaff0;
+    background-color: #fff;
+    border-color: #fff;
+}
+.back-btn{
+    border: none;
+    color: transparent;
+    outline: none;
+    background: none;
+    position: absolute;
+    left: 40%;
+    top: 5%;
+}
 .link {
   outline: none;
   text-decoration: none;
@@ -65,23 +79,6 @@ color:#fff !important;
   display: inline-block
 }
 
-.link-animation {
-  padding: 0 2px;
-  line-height: 1.6;
-}
-.link-animation:after {
-  content: '';
-  position: absolute;
-  height: 2px;
-  width: 100%;
-  bottom: 0;
-  right: 0;
-  transform: translate3d(0,0,0);
-  transition: all .4s;
-  transition-timing-function: cubic-bezier(.7,0,.3,1);
-  border-radius: 2px;
-  z-index: -1
-}
 
 input[type=checkbox] {
   -webkit-appearance: checkbox;
@@ -200,12 +197,7 @@ input[type=email].error, input[type=text].error, input[type=url].error, textarea
   cursor: pointer;
   overflow: hidden;
 }
-.grow {
-  width: 100%;
-}
-.shrink {
-  width: 0%;
-}
+
 .left-half{
   max-width: calc(50% - 24px);
   width: 100%;
@@ -213,6 +205,7 @@ input[type=email].error, input[type=text].error, input[type=url].error, textarea
 }
 .right-half{
   flex-grow: 1;
+  margin-left: 24px;
 }
 .step-2 form{
   display: flex;
@@ -220,6 +213,9 @@ input[type=email].error, input[type=text].error, input[type=url].error, textarea
 .step-2 .title{
   margin: 0;
   padding-bottom: 100px;
+}
+.mr-b-24{
+  margin-bottom: 24px;
 }
 .mr-b-24{
   margin-bottom: 24px;
@@ -232,8 +228,9 @@ input[type=email].error, input[type=text].error, input[type=url].error, textarea
 }
 .social-icons{
   display: flex;
+  margin-top: 16px;
 }
-.social-icons img{
+.social-icons svg{
     margin-right: 20px;
 }
 .top{
@@ -245,3 +242,78 @@ input[type=email].error, input[type=text].error, input[type=url].error, textarea
 .light p{
   color: #fff;
 }
+.light h4{
+  color: #fff;
+}
+a.white, .link.white {
+  color: #fff;
+}
+a:hover, .link:hover {
+  transition: all .25s ease-in-out;
+}
+a, .link {
+  text-decoration: none;
+  font-family: Slate W01 Medium,Helvetica,Arial,sans-serif!important;
+  font-size: inherit;
+  line-height: inherit;
+  cursor: pointer;
+  transition: all .25s ease-in-out;
+}
+
+.link-animation {
+  padding: 0 2px;
+  line-height: 1.6;
+}
+.link-animation span {
+  display: block;
+  position: relative;
+  z-index: 2;
+}
+.link-animation:after {
+  content: '';
+  position: absolute;
+  height: 2px;
+  width: 100%;
+  bottom: 0;
+  right: 0;
+  transform: translate3d(0,0,0);
+  transition: all .4s;
+  transition-timing-function: cubic-bezier(.7,0,.3,1);
+  border-radius: 2px;
+  z-index: -1;
+}
+.link-animation svg {
+  margin-left: 8px;
+}
+.link-animation.white:hover {
+  color: #fff;
+}
+.link-animation.white:after {
+  background: rgba(255,255,255,.5);
+}
+.link-animation.white:hover:after {
+  height: 100%;
+  background: rgba(255,255,255,.25);
+  border-radius: 4px;
+}
+a svg #twitter,a svg #instagram,a svg #medium {
+  transition: 200ms;
+  transition-timing-function: ease-in-out;
+  -webkit-transition: 200ms;
+  -webkit-transition-timing-function: ease-in-out
+}
+
+a svg:hover #twitter {
+  fill: #1da1f2;
+  width: 44px;
+  height: 38px
+}
+a svg:hover #instagram {
+  fill: #5851db;
+  width: 40px;
+  height: 40px
+}
+a svg:hover #medium {
+  fill: #02b875
+}
+
