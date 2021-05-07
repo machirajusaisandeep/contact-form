@@ -1,7 +1,8 @@
 import React, {useState,useEffect} from 'react';
 import {Formik, Form, Field, ErrorMessage} from 'formik';
 import * as Yup from 'yup';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const initialValues = {
     name: '',
     email: ''
@@ -10,6 +11,15 @@ const initialValues = {
 const onSubmit = (values, submitProps) => {
     console.log('Form data', values)
     console.log('submitProps', submitProps)
+    toast.success('Details have been captured successfully', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        });
 }
 
 const validationSchema = Yup.object({
@@ -133,8 +143,20 @@ export const ContactForm = (props) => {
             {currentStep === 1
                 ? <Step1/>
                 : <Step2/>
-}
-
+            }
+            <ToastContainer
+position="top-right"
+autoClose={5000}
+hideProgressBar={false}
+newestOnTop={false}
+closeOnClick
+rtl={false}
+pauseOnFocusLoss
+draggable
+pauseOnHover
+/>
+{/* Same as */}
+<ToastContainer />
         </div>
     )
 }
