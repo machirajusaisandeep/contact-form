@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import {Formik, Form, Field, ErrorMessage} from 'formik';
 import * as Yup from 'yup';
 
@@ -27,11 +27,19 @@ const validationSchema = Yup.object({
 const step1Options = ["Your great project", "Meeting for a coffee", "Birds and bees", "Plan a video call"];
 const step2Titles = ["Let's craft your product.", "We like coffee too! ☕️", "What's on your mind?", "Let's plan a video call! 🎥"];
 
-export const ContactForm = () => {
+export const ContactForm = (props) => {
     const [optionIndex,
         setoptionIndex] = useState(3);
     const [currentStep,
-        setcurrentStep] = useState(1);
+        setcurrentStep] = useState(1);  
+
+    const callBackCurrentStep=()=>{
+        props.onStepChange(currentStep===2)
+    }
+   useEffect(()=>{
+    console.log('2')
+   },[currentStep])
+
     const Step1 = () => {
         return (
             <div className="step-1">
@@ -84,27 +92,31 @@ export const ContactForm = () => {
                         console.log('Formik props', formik)
                         return (
                             <Form>
-                                <div>
-                                    <div className='form-control'>
+                                <div className="left-half">
+                                    <div className='form-control mr-b-24'>
                                         <Field type='text' id='name' name='name' placeholder="Name"/>
+                                        <ErrorMessage name='email'>
+                                            {error => <div className='error'>{error}</div>}
+                                        </ErrorMessage>
                                     </div>
 
-                                    <div className='form-control'>
+                                    <div className='form-control mr-b-24'>
                                         <Field type='email' id='email' name='email' placeholder="Email"/>
                                         <ErrorMessage name='email'>
                                             {error => <div className='error'>{error}</div>}
                                         </ErrorMessage>
                                     </div>
                                 </div>
-                                <div>
-                                    <div className='form-control'>
+                                <div className="right-half">
+                                    <div className='form-control mr-b-24'>
                                         <Field as='textarea' id='about' placeholder="What do you want to talk about?" name='about'/>
                                     </div>
-                                </div>
-
-                                <button type='submit' className="next-btn"  disabled={!formik.isValid || formik.isSubmitting}>
+                                    <button type='submit' className="next-btn"  disabled={!formik.isValid || formik.isSubmitting}>
                                     Send Inquiry
                                 </button>
+                                </div>
+
+                                
                             </Form>
                         )
                     }}

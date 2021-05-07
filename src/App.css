@@ -99,7 +99,6 @@ input[type=email], input[type=text], input[type=url], textarea {
   border: none;
   outline: none;
   padding: 16px 20px;
-  background-color: #f6f8fe;
   border: 2px solid transparent;
   font: inherit;
   line-height: 1.6;
@@ -180,10 +179,45 @@ input[type=radio].light:checked,input[type=checkbox].light:checked {
 input[type=radio] {
   border-radius: 50%
 }
+input[type=email]:focus, input[type=text]:focus, textarea:focus {
+  transition: all .25s ease-in-out;
+  background-color: #26a9ea;
+  border: none;
+}
 .radio-list li{
   white-space: nowrap;
   text-overflow: ellipsis;
   padding: 8px 0;
   cursor: pointer;
   overflow: hidden;
+}
+.grow {
+  width: 100%;
+}
+.shrink {
+  width: 0%;
+}
+.left-half{
+  max-width: calc(50% - 24px);
+  width: 100%;
+  margin-right: 48px;
+}
+.right-half{
+  flex-grow: 1;
+}
+.step-2 form{
+  display: flex;
+}
+.step-2 .title{
+  margin: 0;
+  padding-bottom: 100px;
+}
+.mr-b-24{
+  margin-bottom: 24px;
+}
+.pd-b-100{
+  padding-bottom: 100px;
+}
+.form-control textarea{
+  height: 328px;
 }

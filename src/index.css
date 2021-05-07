@@ -1,4 +1,4 @@
-body {
+body,h2 {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -22,4 +22,22 @@ a{
   line-height: inherit;
   cursor: pointer;
   transition: all .25s ease-in-out;
+}
+textarea {
+  height: 100%;
+  resize: none;
+}
+::placeholder {
+  color: #fff;
+  opacity: 0.5; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #fff;
+  opacity: 0.5;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: #fff;
+  opacity: 0.5;
 }
