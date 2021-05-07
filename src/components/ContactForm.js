@@ -33,12 +33,12 @@ export const ContactForm = (props) => {
     const [currentStep,
         setcurrentStep] = useState(1);  
 
-    const callBackCurrentStep=()=>{
-        props.onStepChange(currentStep===2)
-    }
+        
    useEffect(()=>{
-    console.log('2')
-   },[currentStep])
+    if(props.back){
+        setcurrentStep(1)
+    }
+   },[props.back])
 
     const Step1 = () => {
         return (
@@ -72,7 +72,7 @@ export const ContactForm = (props) => {
                         })
 }
                     </ul>
-                    <button className="next-btn" onClick={() => setcurrentStep(2)}>Next</button>
+                    <button className="next-btn" onClick={() => {setcurrentStep(2);props.onNext(false)}}>Next</button>
                 </div>
             </div>
         )
@@ -82,26 +82,29 @@ export const ContactForm = (props) => {
             <div className="step-2">
                 <h2 className="title">{step2Titles[optionIndex]}</h2>
                 <button onClick={() => setcurrentStep(1)}>Back</button>
+                <div className="contact-bg"> 
                 <h4>Personal Details</h4>
                 <Formik
                     initialValues={initialValues}
                     validationSchema={validationSchema}
                     onSubmit={onSubmit}
                     enableReinitialize>
-                    {formik => {
-                        console.log('Formik props', formik)
+                    {({errors, touched,isValid,isSubmitting}) => {
                         return (
                             <Form>
                                 <div className="left-half">
                                     <div className='form-control mr-b-24'>
-                                        <Field type='text' id='name' name='name' placeholder="Name"/>
-                                        <ErrorMessage name='email'>
+                                        <Field type='text' id='name' name='name' placeholder="Name"
+                                        className={errors.name && touched.name ?"error":''}
+                                        />
+                                        <ErrorMessage name='name'>
                                             {error => <div className='error'>{error}</div>}
                                         </ErrorMessage>
                                     </div>
 
                                     <div className='form-control mr-b-24'>
-                                        <Field type='email' id='email' name='email' placeholder="Email"/>
+                                        <Field type='email' id='email' name='email' placeholder="Email"
+                                         className={errors.email && touched.email ?"error":''}/>
                                         <ErrorMessage name='email'>
                                             {error => <div className='error'>{error}</div>}
                                         </ErrorMessage>
@@ -109,9 +112,9 @@ export const ContactForm = (props) => {
                                 </div>
                                 <div className="right-half">
                                     <div className='form-control mr-b-24'>
-                                        <Field as='textarea' id='about' placeholder="What do you want to talk about?" name='about'/>
+                                        <Field as='textarea' id='about'  className={errors.about && touched.about ?"error":''} placeholder="What do you want to talk about?" name='about'/>
                                     </div>
-                                    <button type='submit' className="next-btn"  disabled={!formik.isValid || formik.isSubmitting}>
+                                    <button type='submit' className="next-btn"  disabled={!isValid || isSubmitting}>
                                     Send Inquiry
                                 </button>
                                 </div>
@@ -121,6 +124,7 @@ export const ContactForm = (props) => {
                         )
                     }}
                 </Formik>
+                </div>
             </div>
         )
     }

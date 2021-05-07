@@ -11,7 +11,7 @@
   background-color: #58C7FF;
 }
 .light{
-color:#fff;
+color:#fff !important;
 }
 .loader{
   opacity:0;
@@ -184,6 +184,15 @@ input[type=email]:focus, input[type=text]:focus, textarea:focus {
   background-color: #26a9ea;
   border: none;
 }
+input[type=email].error, input[type=text].error, input[type=url].error, textarea.error {
+  transition: all .25s ease-in-out;
+  background: url("./assets//input/sad@2x.png");
+  background-size: 20px 20px;
+  background-position: calc(100% - 20px) 22px;
+  background-repeat: no-repeat;
+  background-color: rgba(225,57,93,.6);
+}
+
 .radio-list li{
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -220,4 +229,19 @@ input[type=email]:focus, input[type=text]:focus, textarea:focus {
 }
 .form-control textarea{
   height: 328px;
+}
+.social-icons{
+  display: flex;
+}
+.social-icons img{
+    margin-right: 20px;
+}
+.top{
+  margin-bottom: 72px;
+}
+.top p{
+  color: #686b77;
+}
+.light p{
+  color: #fff;
 }

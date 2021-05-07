@@ -6,7 +6,8 @@ import {TweenMax,Power3}  from "gsap";
 
 function App() {
   const [loadView,setLoadView]=useState(false);
-  const [changeView,setChangeView]=useState(true);
+  const [changeView,setChangeView]=useState(false);
+  const [back,setBack]=useState(false);
   let loaderRef=useRef(null);
   useEffect(()=>{
     TweenMax.to(loaderRef,.8,{opacity:1,y:-20,ease:Power3.easeOut,delay:0.2})
@@ -18,10 +19,10 @@ function App() {
   const MainBody=()=>{
     return (<React.Fragment>
       <div className={"information container "+(changeView?"shrink":'')}>
-     <CompanyDetails></CompanyDetails>
+     <CompanyDetails onBackClick={(e)=>setBack(e)} show={!changeView}></CompanyDetails>
      </div>
      <div  className={"steps container "+(changeView?"grow":'')}>
-          <ContactForm onStepChange={(e)=>setChangeView(e)}></ContactForm>
+          <ContactForm onStepChange={(e)=>setChangeView(e)} back={back} onNext={(e)=>setBack(e)}></ContactForm>
      </div></React.Fragment>)
   }
   const Loader=()=>{
