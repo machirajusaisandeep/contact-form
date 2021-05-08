@@ -8,6 +8,8 @@ function App() {
   const [loadView,setLoadView]=useState(false);
   const [currentStep,
     setCurrentStep] = useState(1); 
+    const [optionIndex,
+      setoptionIndex] = useState(3);
   let loaderRef=useRef(null);
   let detailRef=useRef(null);
   let formRef=useRef(null);
@@ -28,8 +30,12 @@ function App() {
   },[loadView,currentStep])
 
   const onBack=(e)=>{
-      TweenMax.to([detailRef,formRef],1,{width:"50%",ease:Power3.easeIn});
-      setCurrentStep(e)
+    TweenMax.fromTo(detailRef,.8,{width:"0%",ease:Power3.easeInOut},{width:"50%"})
+    TweenMax.fromTo(formRef,.8,{width:"100%",ease:Power3.easeInOut},{width:"50%"})
+    const timeout=setTimeout(()=>{
+      setCurrentStep(e);
+      clearTimeout(timeout)
+    },300)
   }
   const MainBody=()=>{
     return (<React.Fragment>
@@ -37,7 +43,11 @@ function App() {
      <CompanyDetails showBack={currentStep===2} onBackClick={(e)=>onBack(e)}></CompanyDetails>
      </div>
      <div  className="steps container" ref={el=>(formRef=el)}>
-          <ContactForm step={currentStep} onStepChange={(e)=>setCurrentStep(e)}></ContactForm>
+          <ContactForm step={currentStep} 
+          optionIndex={optionIndex}
+           onStepChange={(e)=>setCurrentStep(e)}
+           setOptionIndex={(e)=>setoptionIndex(e)}
+           ></ContactForm>
      </div></React.Fragment>)
   }
   const Loader=()=>{

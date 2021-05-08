@@ -1,11 +1,12 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Formik, Form, Field, ErrorMessage} from 'formik';
 import * as Yup from 'yup';
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 const initialValues = {
     name: '',
-    email: ''
+    email: '',
+    about:''
 }
 
 const onSubmit = (values, submitProps) => {
@@ -20,6 +21,8 @@ const onSubmit = (values, submitProps) => {
         draggable: true,
         progress: undefined
     });
+    submitProps.setSubmitting(false);
+  submitProps.resetForm();
 }
 
 const validationSchema = Yup.object({
@@ -37,9 +40,8 @@ const validationSchema = Yup.object({
 const step1Options = ["Your great project", "Meeting for a coffee", "Birds and bees", "Plan a video call"];
 const step2Titles = ["Let's craft your product.", "We like coffee too! ☕️", "What's on your mind?", "Let's plan a video call! 🎥"];
 
-export const ContactForm = ({step, onStepChange}) => {
-    const [optionIndex,
-        setoptionIndex] = useState(3);
+export const ContactForm = ({step, onStepChange,optionIndex,setOptionIndex}) => {
+   
     const Step1 = () => {
         return (
             <div className="step-1">
@@ -58,7 +60,7 @@ export const ContactForm = ({step, onStepChange}) => {
                                 <path
                                     className="arrow-vector"
                                     fill="#fff"
-                                    fill-rule="evenodd"
+                                    fillRule="evenodd"
                                     d="M120.828427,16.6568542 L111,16.6568542 L111,18.6568542 L120.828427,18.6568542 L117.585786,21.8994949 L119,23.3137085 L124.656854,17.6568542 L123.949747,16.9497475 L119,12 L117.585786,13.4142136 L120.828427,16.6568542 Z"
                                     transform="translate(-111 -12)"></path>
                             </svg>
@@ -77,7 +79,7 @@ export const ContactForm = ({step, onStepChange}) => {
                                         value={index}
                                         className="light"
                                         checked={index === optionIndex}
-                                        onChange={() => setoptionIndex(index)}/>
+                                        onChange={() => setOptionIndex(index)}/>
                                     <label htmlFor={index}>{option}</label>
                                 </li>
                             )
@@ -183,4 +185,4 @@ export const ContactForm = ({step, onStepChange}) => {
     )
 }
 
-export default ContactForm;
+export default React.memo(ContactForm);
